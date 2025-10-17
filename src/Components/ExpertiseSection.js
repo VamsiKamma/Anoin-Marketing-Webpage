@@ -353,8 +353,6 @@
 
 //testing-1//
 
-
-
 import React, { useState } from "react";
 import styled from "styled-components";
 import FooterSection from "./FooterSection";
@@ -364,14 +362,19 @@ import FooterSection from "./FooterSection";
 const SectionContainer = styled.section`
   width: 100%;
   min-height: 100vh;
- background: var(--Background-one, #ece9e3);
-  padding: 2rem 1rem;
+  background: var(--Background-one, #ece9e3);
+  padding: 8rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Grotesk", sans-serif;
 
-  @media (min-width: 768px) {
-    padding: 3rem 2rem;
+  @media (max-width: 767px) {
+    padding: 6rem 1rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 6rem 2rem;
   }
 
   @media (min-width: 1024px) {
@@ -379,23 +382,58 @@ const SectionContainer = styled.section`
   }
 `;
 
+// Wrapper to align tabs + description
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 5%;
+
+  @media (min-width: 768px) {
+    padding-left: 6%;
+  }
+
+  @media (min-width: 1280px) {
+    padding-left: 7%;
+  }
+
+  @media (max-width: 767px) {
+    align-items: center;
+    padding-left: 0;
+    text-align: center;
+  }
+`;
+
 const TabsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
   max-width: 600px;
   border-bottom: 1.5px solid #b6c4d3;
+  flex-wrap: wrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    border-bottom: none;
+    gap: 0.8rem;
+  }
 `;
 
 const Tab = styled.div`
   flex: 1;
-  text-align: center;
+  text-align: left;
   font-size: 1rem;
   font-weight: 400;
   padding-bottom: 0.5rem;
   cursor: pointer;
   color: ${(props) => (props.active ? "#48cbe7" : "#2c438a")};
   transition: color 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   @media (min-width: 768px) {
     font-size: 1.2rem;
@@ -405,8 +443,11 @@ const Tab = styled.div`
     font-size: 1.3rem;
   }
 
-  &:hover {
-    opacity: 0.8;
+  @media (max-width: 767px) {
+    text-align: center;
+    border-bottom: 1.5px solid #b6c4d3;
+    width: 100%;
+    padding-bottom: 0.6rem;
   }
 `;
 
@@ -415,6 +456,10 @@ const UnderlineContainer = styled.div`
   width: 100%;
   max-width: 600px;
   height: 1.5px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const LeftUnderline = styled.div`
@@ -432,9 +477,9 @@ const RightUnderline = styled.div`
 const Description = styled.p`
   color: #444b46;
   line-height: 1.7;
-  text-align: left; 
+  text-align: left;
   max-width: 1200px;
-  margin-top: ${(props) => (props.activeTab === "tech" ? "46px" : "56px")};
+  margin-top: 1.5rem;
   font-size: 1rem;
   letter-spacing: 0.3px;
 
@@ -445,16 +490,21 @@ const Description = styled.p`
   @media (min-width: 1024px) {
     font-size: 1.1rem;
   }
+
+  @media (max-width: 767px) {
+    text-align: center;
+    padding: 0 20px;
+  }
 `;
 
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.8rem;
-  margin-top: -2.5rem;
+  gap: 1rem;
+  margin-top: 3rem;
   width: 95%;
   max-width: 1400px;
-  padding:110px;
+  padding: 110px 5%;
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
@@ -462,6 +512,12 @@ const CardsGrid = styled.div`
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
+    padding: 110px 7%;
+  }
+
+  @media (max-width: 767px) {
+    padding: 60px 20px;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -505,7 +561,7 @@ const CardContent = styled.div`
   padding: 1rem 1.25rem;
   display: flex;
   flex-direction: column;
-  margin-top:-80px;
+  margin-top: -80px;
 `;
 
 const CardTitle = styled.h2`
@@ -574,15 +630,13 @@ const technologyAreas = [
   },
   {
     title: "Edge-to-Data Center",
-    description:
-      "Industrial PCs and gateways, servers, and storage appliances",
+    description: "Industrial PCs and gateways, servers, and storage appliances",
     imageUrl:
       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab0_edge%20to%20datacenter.png",
   },
   {
     title: "Services",
-    description:
-      "Engineering, supply chain, manufacturing, and integration",
+    description: "Engineering, supply chain, manufacturing, and integration",
     imageUrl:
       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab2_services.png",
   },
@@ -624,8 +678,7 @@ const endMarketAreas = [
   },
   {
     title: "Enterprise",
-    description:
-      "Datacenter, on-premises compute and storage, and cloud",
+    description: "Datacenter, on-premises compute and storage, and cloud",
     imageUrl:
       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab5_Enterprise.png",
   },
@@ -672,28 +725,30 @@ const ExpertiseSection = () => {
 
   return (
     <SectionContainer>
-      <TabsContainer>
-        <Tab active={activeTab === "tech"} onClick={() => setActiveTab("tech")}>
-          Our Technology Expertise
-        </Tab>
-        <Tab
-          active={activeTab === "market"}
-          onClick={() => setActiveTab("market")}
-        >
-          Our End Market Expertise
-        </Tab>
-      </TabsContainer>
+      <ContentWrapper>
+        <TabsContainer>
+          <Tab active={activeTab === "tech"} onClick={() => setActiveTab("tech")}>
+            Our Technology Expertise
+          </Tab>
+          <Tab
+            active={activeTab === "market"}
+            onClick={() => setActiveTab("market")}
+          >
+            Our End Market Expertise
+          </Tab>
+        </TabsContainer>
 
-      <UnderlineContainer>
-        <LeftUnderline active={activeTab === "tech"} />
-        <RightUnderline active={activeTab === "market"} />
-      </UnderlineContainer>
+        <UnderlineContainer>
+          <LeftUnderline active={activeTab === "tech"} />
+          <RightUnderline active={activeTab === "market"} />
+        </UnderlineContainer>
 
-      <Description activeTab={activeTab}>
-        {activeTab === "tech"
-          ? "Many of our team members are engineers and marketing communication experts with extensive experience in both semiconductor and technology fields. This expertise spans the full spectrum of technologies in the field of semiconductors, embedded boards, edge infrastructure, and software."
-          : "At Anion Marketing, we work on projects across a diverse range of industries and applications. This wide-ranging experience allows us to bring a unique perspective to every project, ensuring we can effectively tailor marketing strategies to your specific needs."}
-      </Description>
+        <Description activeTab={activeTab}>
+          {activeTab === "tech"
+            ? "Many of our team members are engineers and marketing communication experts with extensive experience in both semiconductor and technology fields. This expertise spans the full spectrum of technologies in the field of semiconductors, embedded boards, edge infrastructure, and software."
+            : "At Anion Marketing, we work on projects across a diverse range of industries and applications. This wide-ranging experience allows us to bring a unique perspective to every project, ensuring we can effectively tailor marketing strategies to your specific needs."}
+        </Description>
+      </ContentWrapper>
 
       <CardsGrid>
         {areas.map((area, index) => (
@@ -702,7 +757,6 @@ const ExpertiseSection = () => {
       </CardsGrid>
 
       <FooterSection />
-
     </SectionContainer>
   );
 };
@@ -1066,3 +1120,401 @@ export default ExpertiseSection;
 // };
 
 // export default ExpertiseSection;
+
+
+
+//testing-3//
+
+
+
+
+
+// import React, { useState } from "react";
+// import styled from "styled-components";
+// import FooterSection from "./FooterSection";
+
+// // ================== Styled Components ==================
+
+// const SectionContainer = styled.section`
+//   width: 100%;
+//   min-height: 100vh;
+//   background: var(--Background-one, #ece9e3);
+//   padding: 8rem 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+
+//   @media (min-width: 768px) {
+//     padding: 3rem 2rem;
+//   }
+
+//   @media (min-width: 1024px) {
+//     padding: 9rem 2rem;
+//   }
+// `;
+
+// const TabsContainer = styled.div`
+//   display: flex;
+//   justify-content: flex-start; /* left-aligned */
+//   align-items: center;
+//   position: relative; /* for single underline */
+//   width: 100%;
+//   max-width: 600px;
+//   margin-bottom: 0.5rem;
+// `;
+
+// const Tab = styled.div`
+//   text-align: left;
+//   font-size: 2rem;
+//   font-weight: 400;
+//   padding: 0.5rem 0;
+//   cursor: pointer;
+//   color: ${(props) => (props.active ? "#48cbe7" : "#2c438a")};
+//   margin-right: 2rem; /* spacing between tabs */
+//   z-index: 2; /* above the underline */
+
+//   @media (min-width: 768px) {
+//     font-size: 1.2rem;
+//   }
+
+//   @media (min-width: 1024px) {
+//     font-size: 1.3rem;
+//   }
+
+//   &:hover {
+//     opacity: 0.8;
+//   }
+// `;
+
+// const Underline = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   height: 2px;
+//   width: 80%;
+//   background: #b6c4d3; /* base color */
+
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     height: 2px;
+//     width: ${(props) => props.activeWidth}px;
+//     background: #ffbc4d; /* highlight color */
+//     left: ${(props) => props.activeLeft}px;
+//     transition: all 0.3s ease;
+//   }
+// `;
+
+// const Description = styled.p`
+//   color: #444b46;
+//   line-height: 1.7;
+//   text-align: left;
+//   max-width: 1200px;
+//   margin-top: ${(props) => (props.activeTab === "tech" ? "46px" : "56px")};
+//   font-size: 1rem;
+//   letter-spacing: 0.3px;
+
+//   @media (min-width: 768px) {
+//     font-size: 1.05rem;
+//   }
+
+//   @media (min-width: 1024px) {
+//     font-size: 1.1rem;
+//   }
+// `;
+
+// const CardsGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   gap: 1rem;
+//   margin-top: 2rem;
+//   width: 100%;
+//   max-width: 1400px;
+
+//   @media (min-width: 640px) {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+
+//   @media (min-width: 1024px) {
+//     grid-template-columns: repeat(4, 1fr);
+//   }
+// `;
+
+// const CardWrapper = styled.div`
+//   background: white;
+//   display: flex;
+//   flex-direction: column;
+//   border-radius: 8px;
+//   overflow: hidden;
+//   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+//   &:hover {
+//     transform: translateY(-6px);
+//     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 20px;
+//   }
+// `;
+
+// const ImageWrapper = styled.div`
+//   height: 150px;
+//   width: 100%;
+//   overflow: hidden;
+
+//   img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     transition: transform 0.4s ease;
+
+//     &:hover {
+//       transform: scale(1.05);
+//     }
+//   }
+
+//   @media (min-width: 768px) {
+//     height: 200px;
+//   }
+
+//   @media (min-width: 1024px) {
+//     height: 220px;
+//   }
+// `;
+
+// const CardContent = styled.div`
+//   padding: 1rem 1.25rem;
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+// const CardTitle = styled.h2`
+//   font-size: 1.2rem;
+//   color: #121619;
+//   font-weight: 600;
+//   margin-bottom: 0.75rem;
+
+//   @media (min-width: 768px) {
+//     font-size: 1.3rem;
+//   }
+// `;
+
+// const CardDescription = styled.p`
+//   font-size: 0.95rem;
+//   color: #444b46;
+//   line-height: 1.6;
+
+//   @media (min-width: 768px) {
+//     font-size: 1rem;
+//   }
+// `;
+// // ================== Data Arrays ==================
+
+// const technologyAreas = [
+//   {
+//     title: "Processing",
+//     description: "GPUs, processors (x86 and Arm), FPGAs, and SoCs",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52aac_processing.png",
+//   },
+//   {
+//     title: "Analog and Power",
+//     description:
+//       "Signal chain components including sensors, signal conditioners, isolation, data converters, and power discretes/chips/modules",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52aae_Analog.png",
+//   },
+//   {
+//     title: "High-Power",
+//     description: "Wide-bandgap (GaN and SiC) and high-power semiconductors",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52aad_high%20power.png",
+//   },
+//   {
+//     title: "Connectivity",
+//     description:
+//       "Wired (Ethernet, 10BASE-T, and other industrial protocols) and wireless connectivity (Wi-Fi, Bluetooth, and 5G)",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab1_connectivity.png",
+//   },
+//   {
+//     title: "Cyber Security",
+//     description:
+//       "Hardware (root-of-trust, trusted platform module, authentication, etc.) and software-based solutions to ensure data security at rest and in motion",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab3_cyber%20security.png",
+//   },
+//   {
+//     title: "Operating Systems & Software",
+//     description:
+//       "Embedded commercial and open-source operating systems, development frameworks, and applications software",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52aaf_operating%20system.png",
+//   },
+//   {
+//     title: "Edge-to-Data Center",
+//     description:
+//       "Industrial PCs and gateways, servers, and storage appliances",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab0_edge%20to%20datacenter.png",
+//   },
+//   {
+//     title: "Services",
+//     description:
+//       "Engineering, supply chain, manufacturing, and integration",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab2_services.png",
+//   },
+// ];
+
+// const endMarketAreas = [
+//   {
+//     title: "Artificial Intelligence at the Edge",
+//     description:
+//       "Machine vision, generative AI, autonomous robotics, and digital twins",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52aba_Artificial%20Intelligence%20at%20the%20Edge.png",
+//   },
+//   {
+//     title: "Clean Energy Solutions",
+//     description:
+//       "EVs, charging infrastructure, energy storage, battery management systems, and smart buildings and homes",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab8_Clean%20Energy%20Solutions.png",
+//   },
+//   {
+//     title: "Industrial Automation",
+//     description: "Robotics and digital factories",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52abb_Industrial%20Automation.png",
+//   },
+//   {
+//     title: "Transportation",
+//     description: "Automotive and connected logistics",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab5_Enterprise.png",
+//   },
+//   {
+//     title: "Healthcare",
+//     description:
+//       "Medical devices, wearables, diagnostics, and healthcare infrastructure",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab7_Healthcare.png",
+//   },
+//   {
+//     title: "Enterprise",
+//     description:
+//       "Datacenter, on-premises compute and storage, and cloud",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab5_Enterprise.png",
+//   },
+//   {
+//     title: "Security",
+//     description:
+//       "Hardware and software cybersecurity solutions, and physical security",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab6_Security.png",
+//   },
+//   {
+//     title: "Retail",
+//     description:
+//       "Connected retail, digital signage, and warehouse management",
+//     imageUrl:
+//       "https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c/679b17668c8048d0dbb52ab4_Retail.png",
+//   },
+// ];
+
+// // ================== Components ==================
+
+// const Card = ({ data }) => (
+//   <CardWrapper>
+//     <ImageWrapper>
+//       <img
+//         src={data.imageUrl}
+//         alt={data.title}
+//         onError={(e) => {
+//           e.target.src =
+//             "https://placehold.co/400x250/E5E7EB/4B5563?text=Image+Error";
+//         }}
+//       />
+//     </ImageWrapper>
+//     <CardContent>
+//       <CardTitle>{data.title}</CardTitle>
+//       <CardDescription>{data.description}</CardDescription>
+//     </CardContent>
+//   </CardWrapper>
+// );
+
+// const ExpertiseSection = () => {
+//   const [activeTab, setActiveTab] = useState("tech");
+//   const areas = activeTab === "tech" ? technologyAreas : endMarketAreas;
+
+//   const tabRefs = [React.useRef(null), React.useRef(null)];
+//   const [underlineProps, setUnderlineProps] = React.useState({
+//     activeWidth: 0,
+//     activeLeft: 0,
+//   });
+
+//   React.useEffect(() => {
+//     const activeIndex = activeTab === "tech" ? 0 : 1;
+//     const node = tabRefs[activeIndex].current;
+//     if (node) {
+//       setUnderlineProps({
+//         activeWidth: node.offsetWidth,
+//         activeLeft: node.offsetLeft,
+//       });
+//     }
+//     window.addEventListener("resize", () => {
+//       const node = tabRefs[activeIndex].current;
+//       if (node) {
+//         setUnderlineProps({
+//           activeWidth: node.offsetWidth,
+//           activeLeft: node.offsetLeft,
+//         });
+//       }
+//     });
+//   }, [activeTab]);
+
+//   return (
+//     <SectionContainer>
+//       <TabsContainer>
+//         <Tab
+//           ref={tabRefs[0]}
+//           active={activeTab === "tech"}
+//           onClick={() => setActiveTab("tech")}
+//         >
+//           Our Technology Expertise
+//         </Tab>
+//         <Tab
+//           ref={tabRefs[1]}
+//           active={activeTab === "market"}
+//           onClick={() => setActiveTab("market")}
+//         >
+//           Our End Market Expertise
+//         </Tab>
+//         <Underline activeWidth={underlineProps.activeWidth} activeLeft={underlineProps.activeLeft} />
+//       </TabsContainer>
+
+//       <Description activeTab={activeTab}>
+//         {activeTab === "tech"
+//           ? "Many of our team members are engineers and marketing communication experts with extensive experience in both semiconductor and technology fields. This expertise spans the full spectrum of technologies in the field of semiconductors, embedded boards, edge infrastructure, and software."
+//           : "At Anion Marketing, we work on projects across a diverse range of industries and applications. This wide-ranging experience allows us to bring a unique perspective to every project, ensuring we can effectively tailor marketing strategies to your specific needs."}
+//       </Description>
+
+//       <CardsGrid>
+//         {areas.map((area, index) => (
+//           <Card key={index} data={area} />
+//         ))}
+//       </CardsGrid>
+
+//       <FooterSection />
+//     </SectionContainer>
+//   );
+// };
+
+// export default ExpertiseSection;
+
+
+//testimg-4///
+
+
+
+

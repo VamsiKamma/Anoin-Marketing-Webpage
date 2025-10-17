@@ -460,7 +460,7 @@ const PromoBox = styled.div`
     width: 33%;
     height: 250px;
     margin-right: 4rem;
-    margin-left: 2rem;
+    margin-left: 0rem;
     margin-top: -5rem;
   }
 

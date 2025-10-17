@@ -31,6 +31,7 @@ const HomePage = () => {
 const HomeContainer = styled.div`
   min-height: 65vh;
   background-color: #ece9e3;
+ 
 `;
 
 const MainSection = styled.main`
@@ -53,7 +54,7 @@ const HomeSection = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;

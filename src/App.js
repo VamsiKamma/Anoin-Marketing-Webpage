@@ -92,6 +92,9 @@ import WhoWeServiceSection from "./Components/WhoWeServiceSection";
 import AboutUsSection from "./Components/AboutUsSection";
 import FooterSection from "./Components/FooterSection";
 import CookieConsentBanner from "./Components/CookieConsentBanner";
+import WorkPage from "./Components/WorkPage";
+import OurServices from "./Components/OurServices";
+
 // import Layout from "./Components/Layout";
 
 function App() {
@@ -121,9 +124,15 @@ function App() {
           }
         />
         <Route path="/expertise" element={<ExpertiseSection />} />
+        <Route path="/workpage" element={<WorkPage />} />
+        <Route path="/ourservices" element={<OurServices />} />
       </Routes>
     </>
   );
 }
 
+
+
+
 export default App;
+

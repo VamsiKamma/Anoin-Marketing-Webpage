@@ -19,6 +19,7 @@ const Section = styled.section`
 const Container = styled.div`
   max-width: 1900px;
   margin: 0 auto;
+  margin-left:-20px;
 `;
 
 const Title = styled.h2`

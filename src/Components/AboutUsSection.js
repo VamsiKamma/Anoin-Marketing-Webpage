@@ -238,7 +238,7 @@ const Button = styled.button`
 
 // RIGHT SIDE (Video)
 const Right = styled.div`
-  width: 90%;
+  width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;

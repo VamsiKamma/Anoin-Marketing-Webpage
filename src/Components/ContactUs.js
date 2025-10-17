@@ -347,8 +347,11 @@ const LeftColumn = styled.div`
   flex-direction: column;
   gap: 0.2rem;
   order: 2; /* Default: text second on mobile */
+  margin-left:-91px;
 
-  @media (min-width: 768px) {
+  @media(max-width:767px){
+  margin-left:-20px;
+}
     order: 1; /* On desktop: text goes first (left) */
   }
 `;
@@ -378,7 +381,7 @@ const Headline = styled.h1`
   }
 
   @media (min-width: 1024px) {
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-align: left;
     margin-top: 10px;
   }
@@ -437,7 +440,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const CTAButton = styled.button`
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   font-size: 1rem;
   font-weight: 400;
   color: white;
@@ -446,6 +449,8 @@ const CTAButton = styled.button`
   cursor: pointer;
   transition: background 0.3s ease;
   border-radius: 0;
+  margin-left:-20px;
+
 
   &:hover {
     background-color: #48cbe7;
@@ -457,6 +462,7 @@ const GraphicImage = styled.img`
   height: auto;
   transition: transform 0.5s ease;
   margin-bottom: 10px;
+  margin-left: -20px;
 
   &:hover {
     transform: scale(1.02);

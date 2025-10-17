@@ -330,7 +330,7 @@ const Header = styled.header`
   width: 97%;
   background: #ece9e3;
   z-index: 1000;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+  // box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
 `;
 
 const NavContainer = styled.div`
@@ -534,8 +534,8 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Expertise", path: "/expertise" },
-    { name: "Work", path: "/work" },
-    { name: "Services", path: "/services" },
+    { name: "Work", path: "/workpage" },
+    { name: "Services", path: "/OurServices" },
     { name: "Blogs", path: "/blogs" },
     { name: "Market Reports", path: "/market-reports" },
     { name: "About", path: "/about" },
