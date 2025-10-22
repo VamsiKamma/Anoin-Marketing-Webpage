@@ -34,8 +34,8 @@
 // `;
 
 // const LayoutContainer = styled.div`
-//   width: 1440px;
-//   height: 5715px;
+//   width: 100%;
+//   height: 100%;
 //   background: var(--Background-one, #ece9e3);
 //   margin: 0 auto; /* centers the layout horizontally */
 //   display: flex;

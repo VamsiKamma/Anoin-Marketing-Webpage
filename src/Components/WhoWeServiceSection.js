@@ -1,3 +1,7 @@
+
+
+
+
 import React from "react";
 import styled from "styled-components";
 
@@ -6,20 +10,28 @@ import styled from "styled-components";
 const Section = styled.section`
   padding: 4rem 1rem;
   background: var(--Background-one, #ece9e3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 
   @media (min-width: 640px) {
     padding: 4rem 2rem;
   }
 
   @media (min-width: 1024px) {
-    padding: 6rem 5rem;
+    padding: 6rem 3rem;
   }
 `;
 
 const Container = styled.div`
-  max-width: 1900px;
-  margin: 0 auto;
-  margin-left:-20px;
+  width: 100%;
+  max-width: 1200px; /*  same as ContactUs, HomePage */
+  margin: 0 auto; /*  centers perfectly */
+  box-sizing: border-box;
+
+  /* ensures consistent scaling when zooming */
+  transition: all 0.3s ease;
 `;
 
 const Title = styled.h2`
@@ -27,6 +39,7 @@ const Title = styled.h2`
   font-weight: 400;
   color: #2c438a;
   margin-bottom: 3rem;
+  text-align: left;
 
   @media (min-width: 1024px) {
     font-size: 3rem;
@@ -41,6 +54,7 @@ const Grid = styled.div`
   border: 1px solid #d1d5db;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  width: 100%;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);

@@ -1,206 +1,77 @@
-// import React from "react";
-// import styled from "styled-components";
 
-// // Styled Components
-
-// const Section = styled.section`
-//   display: flex;
-//   flex-direction: column;
-//   background: var(--Background-one, #ece9e3);
-//   min-height: 600px;
-//   width: 100%;
-//   max-width: 1900px;
-//   margin: 0 auto;
-
-//   @media (min-width: 1024px) {
-//     flex-direction: row;
-//   }
-// `;
-
-// // LEFT SIDE (Text)
-// const Left = styled.div`
-//   width: 100%;
-//   padding: 2rem;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-
-//   @media (min-width: 768px) {
-//     padding: 3rem;
-//   }
-
-//   @media (min-width: 1024px) {
-//     width: 50%;
-//     padding: 5rem;
-//   }
-// `;
-
-// const Title = styled.h2`
-//   font-size: 2.25rem;
-//   font-weight: 400;
-//   color: #2c438a;
-//   margin-bottom: 2rem;
-//   line-height: 1.2;
-
-//   @media (min-width: 1024px) {
-//     font-size: 3rem;
-//   }
-// `;
-
-// const Description = styled.p`
-//   color: #444b46;
-//   font-size: 1.1rem;
-//   line-height: 1.7;
-//   margin-bottom: 2rem;
-//   padding-right: 0.5rem;
-
-//   @media (min-width: 1024px) {
-//     font-size: 1.12rem;
-//   }
-// `;
-
-// const Button = styled.button`
-//   background: #2c438a;
-//   color: white;
-//   font-weight: 500;
-//   padding: 1.25rem 2.5rem;
-//   border: none;
-//   cursor: pointer;
-//   width: fit-content;
-//   transition: all 0.3s ease;
-
-//   &:hover {
-//     background: #48cbe7;
-//   }
-// `;
-
-// // RIGHT SIDE (Video)
-// const Right = styled.div`
-//   width: 90%;
-//   position: relative;
-//   overflow: hidden;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 1rem;
- 
-
-
-//   @media (min-width: 1024px) {
-//     width: 50%;
-//     padding: 3rem;
-//   }
-// `;
-
-// const VideoWrapper = styled.div`
-//   position: relative;
-//   width: 100%;
-//   aspect-ratio: 16 / 9;
-//   background: #111;
-//   border-radius: 0.5rem;
-//   overflow: hidden;
-//   margin-top: 2rem;
-//   margin-leftt:40px;
-  
-
-//   video {
-//     position: absolute;
-//     inset: 0;
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//     margin-leftt:40px;
-//   }
-
-//   @media (min-width: 1024px) {
-//     margin-top: 0;
-//   }
-// `;
-
-// // Main Component
-// const AboutUsSection = () => {
-//   return (
-//     <Section>
-//       {/* LEFT SIDE */}
-//       <Left>
-//         <Title>About Us</Title>
-//         <Description>
-//           Semiconductor companies face unique marketing challenges. From decoding intricate product details to reaching a highly specialized audience, effective marketing is crucial for success. Anion Marketing specializes in bridging the gap between complex technology and compelling storytelling.
-//         </Description>
-//         <Button>About Us</Button>
-//       </Left>
-
-//       {/* RIGHT SIDE (Video) */}
-//       <Right>
-//         <VideoWrapper>
-//           <video autoPlay loop muted playsInline>
-//             <source
-//               src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.mp4"
-//               type="video/mp4"
-//             />
-//             <source
-//               src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.webm"
-//               type="video/webm"
-//             />
-//           </video>
-//         </VideoWrapper>
-//       </Right>
-//     </Section>
-//   );
-// };
-
-// export default AboutUsSection;
-
-
-//testing//
 
 
 import React from "react";
 import styled from "styled-components";
 
-// Styled Components
+// ================== STYLED COMPONENTS ==================
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: var(--Background-one, #ece9e3);
-  min-height: 600px;
   width: 100%;
-  max-width: 1900px;
-  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   @media (min-width: 1024px) {
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
   }
 `;
 
-// LEFT SIDE (Text)
-const Left = styled.div`
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
   width: 100%;
-  padding: 2rem;
+  gap: 2rem;
+
+  @media (min-width: 1024px) {
+    flex-direction: row-reverse; /*  Video first, content second on large screens */
+    justify-content: space-between;
+    gap: 3rem;
+  }
+`;
+
+// ================== LEFT SIDE (TEXT) ==================
+const Left = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  order: 2; /* Text second on mobile */
+  align-items: flex-start;
+  text-align: left;
+  padding: 1rem;
+  order: 2; /*  Text second on all devices */
 
   @media (min-width: 768px) {
-    padding: 3rem;
+    padding: 2rem;
   }
 
   @media (min-width: 1024px) {
-    width: 50%;
-    padding: 5rem;
-    order: 1; /* Desktop: Text left */
+    padding: 3rem 1rem;
+    order: 2;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #2c438a;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.2;
-  margin-left: -20px;
+
+  @media (min-width: 640px) {
+    font-size: 2.4rem;
+  }
 
   @media (min-width: 1024px) {
     font-size: 3rem;
@@ -210,10 +81,9 @@ const Title = styled.h2`
 const Description = styled.p`
   color: #444b46;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 2rem;
-  padding-right: 3.5rem;
-  margin-left: -20px;
+  max-width: 500px;
 
   @media (min-width: 1024px) {
     font-size: 1.12rem;
@@ -224,88 +94,104 @@ const Button = styled.button`
   background: #2c438a;
   color: white;
   font-weight: 500;
-  padding: 1.25rem 2.5rem;
+  padding: 1rem 2rem;
   border: none;
+  border-radius: 0rem;
   cursor: pointer;
-  width: fit-content;
   transition: all 0.3s ease;
-  margin-left: -20px;
 
   &:hover {
     background: #48cbe7;
   }
+
+  @media (max-width: 480px) {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.9rem;
+  }
 `;
 
-// RIGHT SIDE (Video)
+// ================== RIGHT SIDE (VIDEO) ==================
 const Right = styled.div`
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  order: 1; /* Video first on mobile */
+  order: 1; /*  Video first on all devices */
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 
   @media (min-width: 1024px) {
-    width: 50%;
-    padding: 3rem;
-    order: 2; /* Desktop: Video right */
+    padding: 3rem 2rem;
+    order: 1;
   }
 `;
 
 const VideoWrapper = styled.div`
-  position: relative;
   width: 100%;
+  max-width: 550px;
   aspect-ratio: 16 / 9;
-  background: #111;
-  border-radius: 0.5rem;
+  border-radius: 0rem;
   overflow: hidden;
-  margin-top: 2rem;
-  margin-left: -50px;
+  background: #111;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 
   video {
-    position: relative;
-    inset: 0;
     width: 100%;
     height: 100%;
-    margin-right: 50px;
     object-fit: cover;
+    display: block;
   }
 
-  @media (min-width: 1024px) {
-    margin-top: 0;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 0rem;
+  }
+
+  @media (max-width: 480px) {
+    aspect-ratio: 16 / 12;
+    border-radius: 0rem;
   }
 `;
 
-// Main Component
+// ================== MAIN COMPONENT ==================
 const AboutUsSection = () => {
   return (
     <Section>
-      {/* LEFT SIDE */}
-      <Left>
-        <Title>About Us</Title>
-        <Description>
-          Semiconductor companies face unique marketing challenges. From decoding intricate product details to reaching a highly specialized audience, effective marketing is crucial for success. Anion Marketing specializes in bridging the gap between complex technology and compelling storytelling.
-        </Description>
-        <Button>About Us</Button>
-      </Left>
+      <InnerContainer>
+        {/*  VIDEO FIRST */}
+        <Right>
+          <VideoWrapper>
+            <video autoPlay loop muted playsInline>
+              <source
+                src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.webm"
+                type="video/webm"
+              />
+            </video>
+          </VideoWrapper>
+        </Right>
 
-      {/* RIGHT SIDE (Video) */}
-      <Right>
-        <VideoWrapper>
-          <video autoPlay loop muted playsInline>
-            <source
-              src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.mp4"
-              type="video/mp4"
-            />
-            <source
-              src="https://cdn.prod.website-files.com/679b17668c8048d0dbb52a1c%2F67ed4f8c88827a2127a79245_Anion%2010%20Anniversary%20Video%20Apr%2002_N-transcode.webm"
-              type="video/webm"
-            />
-          </video>
-        </VideoWrapper>
-      </Right>
+        {/*  CONTENT SECOND */}
+        <Left>
+          <Title>About Us</Title>
+          <Description>
+            Semiconductor companies face unique marketing challenges. From
+            decoding intricate product details to reaching a highly specialized
+            audience, effective marketing is crucial for success. Anion
+            Marketing specializes in bridging the gap between complex technology
+            and compelling storytelling.
+          </Description>
+          <Button>About Us</Button>
+        </Left>
+      </InnerContainer>
     </Section>
   );
 };

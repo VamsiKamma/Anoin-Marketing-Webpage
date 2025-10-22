@@ -96,7 +96,7 @@ const SubText = styled.p`
   color: #4b4b4b;
   font-family: var(--text-large--font-family);
   font-size: 0.9rem;
-  margin-top: -1rem;
+  margin-top: 2rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   text-align: center;
@@ -106,7 +106,7 @@ const SubText = styled.p`
   }
 
   @media (min-width: 768px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 `;
 
